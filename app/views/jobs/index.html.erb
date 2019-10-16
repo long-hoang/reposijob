@@ -9,6 +9,9 @@
         <h3>Prompt: <%= job.prompt %></h3>
         <h3>Reward: <%= job.reward %> Points</h3>
         <br/>
+        <% if job.user.present? %>
+          <small><%= job.user.email %></small>
+        <% end %>        
       </div>
     <% end %>
 
