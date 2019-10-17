@@ -1,7 +1,7 @@
 <h1><%= @user.email %> 's Dashboard</h1>
-
+<h2>Points: <%= @user.points %></h2>
 <h3>Member Since: <%= @user.created_at.strftime("%B %d, %Y") %></h3>
-<h4><%= @user.jobs.count %> job(s) posted</h4>
+
 
 
 <div class="booyah-box col-10 offset-1">
@@ -10,9 +10,9 @@
   <% @user.jobs.each do |job| %>
     <h3 class = "text-center"><%= link_to job.title, job_path(job) %> <small> - <%=job.created_at.strftime("%B %d, %Y") %> , Status: 
           <% if job.done == false && job.claimed == false %>
-            Incomplete, Unclaimed
+            Unclaimed
           <% elsif job.done == false && job.claimed == true %>
-            Incomplete, Claimed
+            Pending...
           <% elsif job.done == true %>
             Completed
           <% end %>

@@ -2,8 +2,31 @@
 <div class="booyah-box col-10 offset-1">
   <h1 class="text-center"><%= @job.title %></h1>
   <h3>Created on: <%=@job.created_at.strftime("%B %d, %Y") %></h3>
-  
-  <% if @job.claimed == false %>
-      <%= link_to 'Claim', job_claims_path(@job) , class: 'btn btn-primary', method: :post %>
-  <% end %>
+  <h3>Reward: <%= @job.reward %> points</h3>
+  <h2>Status: 
+    <% if @job.done  == false && @job.claimed == false %>
+      Unclaimed
+    <% elsif @job.done  == false && @job.claimed == true %>
+      Pending... (Claimed by <%= @job.claim.user.email %>)
+    <% elsif @job.done  == true %>
+      Completed by <%= @job.claim.user.email %>
+    <% end %>
+
+    <% if current_user && current_user != @job.user %>
+      <% if @job.claimed == false  %>
+          <%= link_to 'Claim', job_claims_path(@job) , class: 'btn btn-primary', method: :post %>
+      <% end %>
+    <% end %>
+
+    <% if current_user && current_user == @job.user && @job.claimed == true && @job.done == false %>
+        <%= simple_form_for @job do |f| %>
+          <%= f.submit 'Mark as Complete', class: 'btn btn-primary' %>
+        <% end %>
+    <% end %>
+
+    <% if current_user && current_user == @job.user && @job.claimed == false %>
+        <%= link_to 'Destroy', job_path(@job), method: :delete, data: {confirm: 'Are you sure you want to remove?'}, class: 'btn btn-danger' %>
+
+    <% end %>
+
 </div>
