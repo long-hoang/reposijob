@@ -1,4 +1,9 @@
 <br />
 <div class="booyah-box col-10 offset-1">
   <h1 class="text-center"><%= @job.title %></h1>
+  <h3>Created on: <%=@job.created_at.strftime("%B %d, %Y") %></h3>
+  
+  <% if @job.claimed == false %>
+      <%= link_to 'Claim', job_claims_path(@job) , class: 'btn btn-primary', method: :post %>
+  <% end %>
 </div>

@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_15_225906) do
+ActiveRecord::Schema.define(version: 2019_10_17_022052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "claims", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "job_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_claims_on_job_id"
+    t.index ["user_id", "job_id"], name: "index_claims_on_user_id_and_job_id"
+  end
 
   create_table "jobs", force: :cascade do |t|
     t.string "title"
@@ -23,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_10_15_225906) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.boolean "claimed", default: false
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
