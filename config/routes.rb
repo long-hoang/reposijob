@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'jobs#index'
   resources :jobs do
     resources :claims, only: :create
+    resources :messages, only: :create
   end 
 
   resources :users, only: :show

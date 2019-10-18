@@ -5,7 +5,7 @@ class ClaimsController < ApplicationController
     current_user.claims.create(job: current_job)
     current_job.claimed = true
     current_job.save
-    redirect_to jobs_path
+    redirect_to job_path( current_job)
   end
 
   private 

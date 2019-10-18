@@ -1,33 +1,81 @@
-<h1><%= @user.email %> 's Dashboard</h1>
-<h2>Points: <%= @user.points %></h2>
-<h3>Member Since: <%= @user.created_at.strftime("%B %d, %Y") %></h3>
+<br/>
+  <div class = "col-10 offset-1 text-center">
+      <h1 class = "heading"> My Dashboard</h1>
+      <h2>Points: <%= @user.points %></h2>
+      <h4><%= @user.email %> </h3>
+      <h4>Member Since: <%= @user.created_at.strftime("%B %d, %Y") %></h3>
+      <hr/>
+      <br/>
 
+  </div>
 
-
-<div class="booyah-box col-10 offset-1">
-  <h1 class="text-center">My Posted Jobs</h1>
-
-  <% @user.jobs.each do |job| %>
-    <h3 class = "text-center"><%= link_to job.title, job_path(job) %> <small> - <%=job.created_at.strftime("%B %d, %Y") %> , Status: 
-          <% if job.done == false && job.claimed == false %>
-            Unclaimed
-          <% elsif job.done == false && job.claimed == true %>
-            Pending...
-          <% elsif job.done == true %>
-            Completed
-          <% end %>
-    </small></h3>   
-  <% end %>
-
-</div>
+<h1 class="text-center ">My Posted Jobs</h1>
 
 <br/>
 
-<div class="booyah-box col-10 offset-1">
-  <h1 class="text-center">Claimed Jobs</h1>
-  
-  <% @user.claims.each do |claim| %>
-    <h3 class = "text-center"><%= link_to claim.job.title, job_path(claim.job) %></h3>
+  <div class = "row  container">
+    <div class="booyah-box-special offset-2 col-md-6 text-center "> <h4 class = "heading">Title</h4> </div>
+    <div class = "booyah-box-special col-md-3 text-center"><h4 class = "heading"> Status</h4> </div>
+  </div>
+
+  <% @user.jobs.each do |job| %>
+    <div class = "row  container">
+        <div class="booyah-box offset-2 col-md-6 ">
+          <h3 class = "text-center"><%= link_to job.title, job_path(job) %></h3> 
+          
+        </div> 
+
+
+        <div class = "booyah-box col-md-3 text-center">
+
+              <% if job.done == false && job.claimed == false %>
+                <span class = "btn btn-info">Unclaimed</span>
+              <% elsif job.done == false && job.claimed == true %>
+                <span class = "btn btn-warning">Pending...</span>
+              <% elsif job.done == true %>
+                <span class = "btn btn-success">Completed</span>
+              <% end %>
+
+        </div>
+    </div>
+    
   <% end %>
 
-</div>
+
+
+    <br/>
+  <h1 class=" text-center">Claimed Jobs</h1>
+
+  <br/>
+
+  <div class = "row  container">
+    <div class="booyah-box-special offset-2 col-md-6 text-center "> <h4 class = "heading">Title</h4> </div>
+    <div class = "booyah-box-special col-md-3 text-center"><h4 class = "heading"> Status</h4> </div>
+  </div>
+
+      
+      <% @user.claims.each do |claim| %>
+        
+        <div class = "row  container">
+
+            <div class="booyah-box offset-2 col-md-6">
+              <h3 class = "text-center"><%= link_to claim.job.title, job_path(claim.job) %></h3>
+            </div>
+
+            <div class = "booyah-box col-md-3 text-center">
+                                      
+                    <% if claim.job.done == false && claim.job.claimed == false %>
+                      <span class = "btn btn-info">Unclaimed</span>
+                    <% elsif claim.job.done == false && claim.job.claimed == true %>
+                      <span class = "btn btn-warning">Pending...</span>
+                    <% elsif claim.job.done == true %>
+                      <span class = "btn btn-success">Completed</span>
+                    <% end %>
+            </div>
+
+        </div>
+
+      <% end %>
+
+
+    <br/>

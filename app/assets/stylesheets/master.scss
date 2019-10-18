@@ -1,4 +1,6 @@
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Modak&display=swap');
+
 
 .booyah-box {
   -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
@@ -6,5 +8,71 @@
   box-shadow: 1px 1px 2px 0 #d0d0d0;
   background: #fff;
   border: 1px solid #ccc;
-  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  border-color: #d6d6d6 ;
+  padding: 20px;
 }
+
+
+
+.navbar .navbar-brand {
+  font-family: 'Modak', cursive;
+  font-size: 35px;  
+  color: red;
+}
+
+.navbar  {
+  background-color: #f4b175;
+}
+
+body {
+  background-color: #f1d18b;
+}
+
+.heading {
+  color: brown;
+  font-weight: bold;
+
+  padding: 20px;
+}
+
+.note {
+  color: red;
+}
+
+.completed {
+  color: green;
+  font-weight: bold;
+}
+
+.booyah-box-special {
+
+
+  background: #b4c7e7;
+
+  padding: 5px;
+}
+
+.booyah-box-content {
+
+  background: white;
+
+  padding: 5px;
+}
+
+.claimer {
+  background: #9effc3;
+}
+
+.owner {
+  background: #9ee4ff;
+}
+
+.booyah-box-message {
+
+  background: #ebebeb;
+  border: 3px solid ;
+  border-color: #d6d6d6 ;
+  padding: 5px;
+
+}
+

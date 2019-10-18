@@ -1,22 +1,27 @@
 
-
+<br/>
+<div class = "col-10 offset-1 text-center ">
+    <h1 class = "heading" > Job Board </h1>
+    <hr/>
+    <br/>
+</div>
 
   <% @jobs.each do |job| %>
 
     <%if job.done == false && job.claimed == false%>
       <div class = "booyah-box col-10 offset-1">
-        <h2 ><%= link_to job.title, job_path(job) %></h2>
-        <h3>Prompt: <%= job.prompt %></h3>
+        <h2><%= link_to job.title, job_path(job) %></h2>
+
         <h3>Reward: <%= job.reward %> Points</h3>
         <br/>
         <% if job.user.present? %>
-          <small><%= job.user.email %></small>
+          <small class = "note ">Created by <%= job.user.email %> on <%= job.created_at.strftime("%B %d, %Y") %> </small>
         <% end %>   
         <br/>
-        <small>Created on: <%= job.created_at.strftime("%B %d, %Y") %></small>
-
       </div>
+
     <% end %>
 
   <% end %>
+<br/>
 
