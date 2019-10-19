@@ -1,9 +1,14 @@
 <div class="booyah-box col-10 offset-1">
   <h1>Enter Your Job Details</h1>
+  <br/>
   <%= simple_form_for @job do |f| %>
-    <%= f.input :title %>
-    <%= f.input :prompt %>
-    <%= f.input :reward %>
+    Title of Job
+    <%= f.input :title, label: false %>
+    Prompt/Task
+    <%= f.input :prompt, label: false,:input_html => { :style => 'width :500px; height :100px;'} %>
+    Points to Reward
+    <%= f.input :reward, label: false %>
+    <br/>
     <%= f.submit 'Create', class: 'btn btn-primary' %>
   <% end %>
 </div>
