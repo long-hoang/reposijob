@@ -1,5 +1,5 @@
 <br />
-<div class="booyah-box col-10 offset-1">
+<div class="booyah-box col-10 col-centered">
   <h1 class="text-center heading"><%= @job.title %></h1>
 
   
@@ -63,8 +63,8 @@
     
       <% if message.user_id == @job.user_id %>
         
-        <div class = "row container offset-1">
-          <div class="booyah-box owner  col-md-3 text-center "> <small> <%= message.user.email %> <span class = "note" >[Owner]</span> <br/> <%= message.created_at.strftime("%B %d, %Y") %> </small></div>
+        <div class = "row container col-10 col-centered">
+          <div class="booyah-box owner  col-md-4 text-center "> <small> <%= message.user.email %> <span class = "note" >[Owner]</span> <br/> <%= message.created_at.strftime("%B %d, %Y") %> </small></div>
           <div class = "booyah-box-message col-md-8 text-center"><b><%= message.content %></b></div>
         </div>
 
@@ -73,12 +73,15 @@
 
       <% else %>
         
-        <div class = "row container offset-1">
+        <div class = "row container col-10 col-centered">
           <div class="booyah-box-message  col-md-8 text-center "><b><%= message.content %></b> <small> </div>
-          <div class = "booyah-box col-md-3 claimer text-center"><%= message.user.email %> <br/> <%= message.created_at.strftime("%B %d, %Y") %> </small></div>
+          <div class = "booyah-box col-md-4 claimer text-center"><%= message.user.email %> <br/> <%= message.created_at.strftime("%B %d, %Y") %> </small></div>
         </div>
       <% end %>
   <% end %>
+
+
+
 
     <% if @job.done  == false && @job.claimed == true %>
     <div class="booyah-box col-10 offset-1">
@@ -86,11 +89,10 @@
         <%= simple_form_for @message, url: job_messages_path(@job) do |f| %>
           <%= f.input :content, label: false , :input_html => { :style => 'width :500px'} %>
 
-          <%= f.submit "Sumbit", class: 'btn btn-primary' %>
+          <%= f.submit "Submit", class: 'btn btn-primary' %>
         <% end %>
     </div>
     <% end %>
    
 
     <br/>
-

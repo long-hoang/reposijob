@@ -1,15 +1,16 @@
 
-<br/>
+
 <div class = "col-10 offset-1 text-center ">
     <h1 class = "heading" > Job Board </h1>
     <hr/>
-    <br/>
+
 </div>
 
+<section class = "content-box col-10 col-centered">
   <% @jobs.each do |job| %>
 
     <%if job.done == false && job.claimed == false%>
-      <div class = "booyah-box col-10 offset-1">
+      <div class = "booyah-box ">
         <h2><%= link_to job.title, job_path(job) %></h2>
 
         <h3>Reward: <%= job.reward %> Points</h3>
@@ -23,5 +24,7 @@
     <% end %>
 
   <% end %>
+
+</section>
 <br/>
 
