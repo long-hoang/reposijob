@@ -5,8 +5,13 @@ Rails.application.routes.draw do
   resources :jobs do
     resources :claims, only: :create
     resources :messages, only: :create
+    
   end 
 
-  resources :users, only: :show
+  resources :users, only: :show 
+  resources :notifications
+
+
+   get 'current_user_id' => "users#current_user_id"
 
 end

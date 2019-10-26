@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_17_224328) do
+ActiveRecord::Schema.define(version: 2019_10_25_224047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 2019_10_17_224328) do
     t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_messages_on_job_id"
     t.index ["user_id", "job_id"], name: "index_messages_on_user_id_and_job_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "recipient_id"
+    t.boolean "read", default: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

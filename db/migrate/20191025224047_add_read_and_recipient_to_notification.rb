@@ -1,0 +1,7 @@
+class AddReadAndRecipientToNotification < ActiveRecord::Migration[5.2]
+  def change
+    add_column :notifications, :recipient_id, :integer
+    add_column :notifications, :read, :boolean, default: false 
+
+  end
+end

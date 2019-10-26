@@ -30,7 +30,26 @@
 
               </ul>
                 <ul class="navbar-nav">
-                  <% if user_signed_in? %>             
+                  <% if user_signed_in? %>    
+
+
+                    <li class="nav-item">
+                      <div class="btn-group">
+                          <button class="btn btn-danger dropdown-toggle" id = "title"type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Notifications (0)
+                          </button>
+                          <div class="dropdown-menu keep-open notification-list" id = "target">
+                                
+
+                              <a class="dropdown-item" href="#">Action</a>
+                          </div>
+                      </div>
+                    </li>
+
+
+
+
+
                     <li class="nav-item">
                       <%= link_to 'My Profile', user_path(current_user), class: 'nav-link' %>
                     </li>
@@ -60,3 +79,80 @@
     <%= yield %>
   </body>
 </html>
+
+
+<script >
+  
+  $(function(){
+    
+    showNotification();
+
+
+    
+  });
+
+      function getCurrentUserId(){
+              
+              $.get('/current_user_id', function(result){
+                current_user_id = result.id;
+                
+              });     
+
+      }
+
+
+      function showNotification(){
+
+
+      $.get('/current_user_id', function(result){
+
+        current_user_id = result.id;
+
+
+        $.get("/notifications").success(function(data){
+          var htmlString = "";
+          counter = 0;
+          console.log(current_user_id);
+
+          $.each(data, function(index, notification){
+
+
+
+            if (notification.read == false && notification.recipient_id == current_user_id){
+              var notiElement = '<a class="dropdown-item" href="#">' + notification.content + '</a>';
+              htmlString += notiElement;
+              counter += 1;
+            }
+
+          var notis = $('.notification-list');
+          notis.html(htmlString);
+          
+          var buttontitle = $('#title');
+          buttontitle.html('Notifications (' + counter+')');
+          });
+        });
+
+      });     
+      }
+
+
+
+
+      jQuery('.dropdown-toggle').on('click', function (e) {
+        $(this).next().toggle();
+      });
+      jQuery('.dropdown-menu.keep-open').on('click', function (e) {
+        e.stopPropagation();
+      });
+
+      if(1) {
+        $('body').attr('tabindex', '0');
+      }
+      else {
+        alertify.confirm().set({'reverseButtons': true});
+        alertify.prompt().set({'reverseButtons': true});
+      }
+
+
+
+</script>

@@ -7,6 +7,7 @@ class User < ApplicationRecord
          has_many :jobs
          has_many :claims
          has_many :messages
+         has_many :notifications
 
          
          
