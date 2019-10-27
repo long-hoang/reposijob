@@ -33,6 +33,15 @@ class JobsController < ApplicationController
     @job.done = true
     @job.save
     @job.claim.user.save
+
+    recipient = @job.claim.user_id
+
+
+    temp_text = 'Nice! You gained ' + @job.reward.to_s + ' points for completing "' + @job.title + '"!'
+
+    current_user.notifications.create(content: temp_text, recipient_id: recipient)
+
+
     redirect_to job_path(@job)
   end
 
