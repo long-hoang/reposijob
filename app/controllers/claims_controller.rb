@@ -10,7 +10,7 @@ class ClaimsController < ApplicationController
 
     temp_text = 'Your job "' + current_job.title + '" has been claimed!'
 
-    current_user.notifications.create(content: temp_text, recipient_id: recipient)
+    current_user.notifications.create(content: temp_text, recipient_id: recipient, job_id: current_job.id)
 
 
     redirect_to job_path( current_job)

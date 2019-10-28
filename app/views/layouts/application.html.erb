@@ -90,6 +90,22 @@
   });
 
   
+   $("#target").click(function(event) {
+        var itemId = $(event.target).data("id");
+        console.log(itemId);
+
+        $.post('/notifications/'+itemId, {
+          _method: "PUT",
+          notification: {
+            read: true
+          }
+        }, function(data) {
+          showNotification();
+        });
+
+    });
+
+
 
 
 
@@ -118,7 +134,7 @@
 
 
                 if (notification.read == false && notification.recipient_id == current_user_id){
-                  var notiElement = '<a class="dropdown-item" href="#">' + notification.content + '</a>';
+                  var notiElement = '<a class="dropdown-item" data-id = "'+notification.id+'" href="/jobs/'+notification.job_id+'"">' + notification.content + '</a>';
                   htmlString += notiElement;
                   counter += 1;
                 }

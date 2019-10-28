@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
 
     temp_text = "New Message on Job: " + @job.title
 
-    current_user.notifications.create(content: temp_text, recipient_id: recipient)
+    current_user.notifications.create(content: temp_text, recipient_id: recipient, job_id: @job.id)
 
 
     redirect_to job_path(@job)
